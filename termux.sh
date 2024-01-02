@@ -4,7 +4,7 @@ DEBIAN_FRONTEND=noninteractive
 function install_packages {
     yes "" | pkg update -y >/dev/null 2>&1
     yes "" | pkg upgrade -y >/dev/null 2>&1
-    yes "" | pkg install openssh rsync autossh iproute2 wget git ncdu curl -y >/dev/null 2>&1
+    yes "" | pkg install openssh rsync autossh iproute2 wget git ncdu curl exiftool -y >/dev/null 2>&1
 }
 
 function notify {
