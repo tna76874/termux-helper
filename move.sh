@@ -22,9 +22,7 @@ function move_to_folder() {
 
   mkdir -p "${datum}"
 
-  #mv "$file" "${datum}/$file"
-  
-  if [ -f "${datum}/$base_file" ]; then
+  if [[ "${file}" -ef "${datum}/$base_file" ]]; then
       :
   else
       mv "${file}" "${datum}/$base_file"
