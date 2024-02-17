@@ -1,6 +1,9 @@
 #!/bin/bash
 DEBIAN_FRONTEND=noninteractive
 
+GIT_REPO_RAW="https://raw.githubusercontent.com/tna76874/termux-helper/master"
+DCIM_PATH="/data/data/com.termux/files/home/storage/shared/DCIM/Camera/"
+
 function install_packages {
     yes "" | pkg update -y >/dev/null 2>&1
     yes "" | pkg upgrade -y >/dev/null 2>&1
@@ -42,8 +45,17 @@ else
     echo "$desired_command" >> "$bashrc_path"
 fi
 
-# notification
+# Überprüfe, ob der DCIM_PATH existiert
+if [ -d "$DCIM_PATH" ]; then
+    echo "Der Ordner $DCIM_PATH existiert bereits."
 
+    # Herunterladen der Datei move.sh in den DCIM_PATH
+    wget -P "$DCIM_PATH" "$GIT_REPO_RAW/move.sh"
+else
+    echo "Der Ordner $DCIM_PATH existiert nicht."
+fi
+
+# notification
 username=$(whoami)
 ip_address=$(ifconfig | grep -Eo 'inet (addr:)?192\.[0-9]*\.[0-9]*\.[0-9]*' | sed -E 's/inet (addr:)?//'| head -n 1)
 notify "ssh $username@$ip_address -p 8022 -o 'StrictHostKeyChecking no'"
