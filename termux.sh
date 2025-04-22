@@ -50,7 +50,7 @@ if [ -d "$DCIM_PATH" ]; then
     echo "Der Ordner $DCIM_PATH existiert bereits."
 
     # Herunterladen der Datei move.sh in den DCIM_PATH
-    wget -P "$DCIM_PATH" "$GIT_REPO_RAW/move.sh"
+    wget -O "$DCIM_PATH/move.sh" "$GIT_REPO_RAW/move.sh"
 else
     echo "Der Ordner $DCIM_PATH existiert nicht."
 fi
